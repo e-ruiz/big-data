@@ -1022,8 +1022,31 @@ db.cliente.aggregate([{
   },
   {"$unwind": "$vendas"},
   {$group: {
+    _id: "$endereco.pais",
+    total: { 
+      $sum: {$multiply: ["$vendas.quantidade", "$vendas.valor_unitario"]}
+    }
+  }}
+])
+
+
+/**
+ * 12b. Calcular o valor total de produtos vendidos, por CIDADES, de acordo com a origem do cliente.
+ * 
+ * OBS.: adicionei cidade aqui, pois essa base tem apenas um país
+ */
+db.cliente.aggregate([{
+    $lookup:{
+      from: "vendas",
+      localField: "_id",
+      foreignField: "id_cliente",
+      as: "vendas"
+    }
+  },
+  {"$unwind": "$vendas"},
+  {$group: {
     _id: "$endereco.cidade",
-    totalValor: { 
+    total: { 
       $sum: {$multiply: ["$vendas.quantidade", "$vendas.valor_unitario"]}
     }
   }}
