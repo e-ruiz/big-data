@@ -14,3 +14,4 @@ venv/
 # this project 
 docker/
 migrations/
+bin/
