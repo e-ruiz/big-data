@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% include 'header.html' %}
+
+<body>
+  {% if False or config['ENV'] == 'development' %}
+  <div id="develop-warning" class="w3-bar w3-padding w3-red w3-fixed">
+    <p class="w3-large">Cuidado, a aplicação está rodando em modo desenvolvimento!</p>
+  </div>
+  {% endif %}
+
+
+  <div id="main" style="background:#eee;">
+    <!--
+    <span class="w3-opennav w3-xlarge" onclick="toggleSidenav()" style="display:none">☰</span>
+    -->
+    <header class="w3-blue-grey">
+      <div class="w3-row w3-blue-grey">
+        <div class="w3-col s10">
+          {% include 'topnav.html' %}
+        </div>
+      </div>
+
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <div class="w3-panel w3-blue w3-display-container flash">
+        <span onclick="this.parentElement.style.display='none'"
+          class="w3-button w3-large w3-display-topright w3-hover-indigo">&times;</span>
+        <!-- <h3>Sucesso!</h3> -->
+        <ul>
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+      </div>
+      {% endif %}
+      {% endwith %}
+    
+    </header>
+    <div class="w3-row">
+      <div class="w3-col w3-container" style="padding:0;width:200px;">
+        {# include 'sidenav.html' #}
+      </div>
+      <div id="content" class="w3-rest w3-container w3-white">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+    <div class="w3-row">
+      <div class="w3-col s12 w3-container w3-white" style="border-top:1px solid #ccc;">
+        {% include 'footer.html' %}
+      </div>
+    </div>
+</body>
+
+</html>

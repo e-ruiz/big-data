@@ -1,0 +1,114 @@
+<footer class="w3-container w3-small w3-center w3-padding-large w3-theme-light">
+  <br>
+  <h3 class="w3-text-theme"><a style="text-decoration:none;" href="https;//github.com/e-ruiz">Big Data - Univali</a></h3>
+  <br><br>
+</footer>
+
+</div><!-- End main -->
+
+{% block scripts %}
+{% endblock %}
+
+<script>
+/** 
+	Set correct locale to correctly to sort accented characters 
+    @see www.kryogenix.org/code/browser/sorttable/#notenglish
+*/
+sorttable.sort_alpha = function(a,b) { return a[0].localeCompare(b[0], 'pt-br'); }
+</script>
+<script>
+$(document).ready(function () {
+    $('table.printable').each(function () {
+        var $table = $(this);
+
+        // print button
+        var $buttonPrint = $("<button type='button' class='print'>");
+        $buttonPrint.text("Imprimir/PDF");
+        $buttonPrint.insertBefore($table);
+        $buttonPrint.click(function() {
+            window.print();
+        });
+        
+        // CSV button
+        var $buttonCSV = $("<button type='button' class='print'>");
+        $buttonCSV.text("CSV/Excel");
+        $buttonCSV.insertBefore($table);
+
+        $buttonCSV.click(function () {
+            var csv = $table.table2CSV({
+                delivery: 'value' /* or 'popup' */
+            });
+            window.location.href = 'data:application/csv;charset=UTF-8,' 
+            + encodeURIComponent(csv);
+        });
+    });
+})
+</script>     
+<script>
+
+function toggleSidenavButton(small) {
+
+  small = (small == undefined) ? true : small;
+  
+  nav  = document.getElementById("sidenav");
+  btn  = document.getElementById("toggle-sidenav");
+  
+  if (small) {
+    btn.classList.remove('fa-arrow-left');
+    btn.classList.add('fa-arrow-right');
+  } else {
+    btn.classList.remove('fa-arrow-right');
+    btn.classList.add('fa-arrow-left');
+  }
+}
+/**
+ * Toggles menu layout between small and large layout
+ * 
+ * @return void
+ */
+function toggleSidenav() {
+    
+  var main = document.getElementById("main");
+  var nav  = document.getElementById("sidenav");
+    
+  if (nav.classList.contains('small-sidenav')) {
+    nav.classList.remove('small-sidenav');
+    main.classList.remove('small-sidenav');
+    
+    toggleSidenavButton(false);
+  } else {
+    nav.classList.add('small-sidenav');
+    main.classList.add('small-sidenav');
+    toggleSidenavButton(true);
+  }
+}
+
+/**
+ * Changes menu layout between small and large layout on resize screen
+ * 
+ * This is implemented here as a workaround between CSS @media display and toggleSidenav() function
+ */
+window.addEventListener("resize", function() {
+  
+  var viewport = {
+      width:Math.max(document.documentElement.clientWidth, window.innerWidth || 0), 
+      height:Math.max(document.documentElement.clientHeight, window.innerHeight || 0), 
+    };
+    
+  var nav  = document.getElementById("sidenav");
+  var main = document.getElementById("main");
+  
+  toggleSidenavButton();
+  
+  if (viewport.width <= 960) {
+    toggleSidenavButton(true);
+    nav.classList.add('small-sidenav');
+    main.classList.add('small-sidenav');
+  } else {
+    toggleSidenavButton(false);
+    nav.classList.remove('small-sidenav');
+    main.classList.remove('small-sidenav');
+  } 
+});
+
+</script>

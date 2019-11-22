@@ -1,0 +1,13 @@
+{% extends 'blog.html' %}
+
+{% block header %}
+  <h1>{% block title %}Mongo Blogs{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="w3-container">
+    <h1>Mongo Blogs</h1>
+  </div>
+
+  {% include'data-grid.html' %}
+{% endblock %}

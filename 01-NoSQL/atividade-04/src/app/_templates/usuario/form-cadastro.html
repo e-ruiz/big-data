@@ -1,0 +1,24 @@
+{% extends 'blog.html' %}
+
+{% block content %}
+
+    <h1>Cadastro de usuário</h1>
+    <form method="post" action="{{ url_for('usuario.post_cadastro') }}">
+      <label for="nome">Nome</label>
+      <input name="nome" id="nome" required>
+      <br>
+      <label for="login">Login</label>
+      <input name="login" id="login" required>
+      <br>
+      <label for="password">Senha</label>
+      <input type="password" name="senha" id="senha" required>
+      <br>
+      <input type="submit" value="Enviar">
+    </form>
+{#
+    <form class="w3-container w3-margin-bottom" method="get" action="{{ url_for('usuario.post_cadastro') }}">
+      <h2>{{title}}</h2>
+      <input class="w3-input w3-border w3-light-grey w3-focus-red w3-round" name="q" type="text" placeholder="Digite aqui sua busca e pressione enter">
+    </form>    
+#}
+{% endblock %}

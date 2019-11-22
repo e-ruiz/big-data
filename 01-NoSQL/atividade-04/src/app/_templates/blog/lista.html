@@ -1,0 +1,12 @@
+{% extends 'blog.html' %}
+
+{% block content %}
+
+<h1>Mongo Blogs</h1>
+
+<ul>
+  {% for blog in blogs %}
+  <li><a href="{{ url_for('blog.get_blogs')  }}/{{ blog._id   }}">{{blog.titulo}}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

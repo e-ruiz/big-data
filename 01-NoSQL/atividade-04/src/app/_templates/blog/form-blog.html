@@ -1,0 +1,26 @@
+{% extends 'blog.html' %}
+
+{% block content %}
+  <div class="w3-container">
+    <h1>Novo Blog</h1>
+    <form method="post" action="{{ url_for('blog.post_novo') }}">
+      <label for="titulo">Título</label>
+      <br>
+      <input name="titulo" id="titulo" required>
+      <br>
+      <input name="data_cadastro" id="data_cadastro" type="hidden" value="{{ date_time }}" required>
+      <br>
+      <label for="descricao">Descrição</label>
+      <br>
+      <textarea id="descricao" name="descricao" rows="6"></textarea>
+      <br>
+      <input type="submit" value="Enviar">
+    </form>
+{#
+    <form class="w3-container w3-margin-bottom" method="get" action="{{ url_for('usuario.post_cadastro') }}">
+      <h2>{{title}}</h2>
+      <input class="w3-input w3-border w3-light-grey w3-focus-red w3-round" name="q" type="text" placeholder="Digite aqui sua busca e pressione enter">
+    </form>    
+#}
+</div>
+{% endblock %}

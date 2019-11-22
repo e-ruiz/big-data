@@ -1,0 +1,23 @@
+#!/bin/bash
+
+
+echo "Setting virtualenv"
+virtualenv -p python3 env
+
+echo "Activating virtualenv"
+source env/bin/activate
+
+echo "Installing dependencies"
+pip install -r docs/requirements.txt
+
+echo "Setting environment variables"
+export FLASK_APP=src/main.py
+export FLASK_ENV=development
+export FLASK_MONGO_USR=eric_O132Dhp1I9m2
+export FLASK_MONGO_PWD=kvbZcqSi4XB58D72
+# export | grep FLASK
+
+echo ""
+flask routes
+
+echo ""

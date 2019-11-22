@@ -1,0 +1,20 @@
+{% extends 'blog.html' %}
+
+{% block header %}
+<h1>{% block title %}Mongo Blogs{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="w3-container">
+  <h1>{{usuario.nome}}</h1>
+  {# <!-- 
+    <div class="w3-container">
+      <a href="{{ url_for('post.get_novo', usuario_id=usuario._id) }}" class="w3-button w3-blue w3-hover-indigo">Novo post</a>
+    </div>
+  --> #}
+  <p>{{usuario}}</p>
+  <p>Nome: {{usuario.nome}}</p>
+  <p>Nome de usuário: {{usuario.login}}</p>
+
+</div>
+{% endblock %}

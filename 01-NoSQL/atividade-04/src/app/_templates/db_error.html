@@ -1,0 +1,12 @@
+{% extends 'blog.html' %}
+
+{% block content %}
+<div class="w3-container">
+  <div class="w3-error">
+    <p>Erro no banco de dados</p>
+    {% if config.DEBUG %}
+    <p>{{error._message}}</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

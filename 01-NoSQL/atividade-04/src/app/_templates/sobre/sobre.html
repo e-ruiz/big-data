@@ -1,0 +1,49 @@
+{% extends 'blog.html' %}
+
+{% block content %}
+
+<div class="w3-large">
+    <h1>Sobre</h1>
+
+    <h2>ATIVIDADE 4 – Aplicação Prática do MongoDB</h2>
+    <h3>Pós graduação Latu Sensu em Big Data</h3>
+    <ul>
+        <li><strong>Disciplina:</strong> Bancos de dados Não Relacionais - NoSQL (2019.1)</li>
+        <li><strong>Professor:</strong> Dr. Rafael Queiroz Gonçalves, PMP</li>
+    </ul>
+
+    <p>
+        Esta atividade consiste no desenvolvimento de um sistema computacional atendendo aos requisitos funcionais já
+        estabelecidos. Dentre os requisitos não funcionais o sistema deve ser obrigatoriamente web-based, acessível via
+        navegadores HTTP, e pode ser implementando com a linguagem de programação de preferência. Entretanto, como
+        repositório de dados, deve-se obrigatoriamente adotar o banco de dados MongoDB.
+    </p>
+    <hr>
+    <p><strong>Requisitos funcionais:</strong></p>
+
+    <ol>
+        <li>O sistema deverá registrar o conteúdo de blogs a serem publicados na internet.</li>
+        <li>Um Blog terá unicamente um usuário “proprietário”.</li>
+        <li>Um Blog pode conter uma descrição simples indicando sua finalidade.</li>
+        <li>Um blog pode conter “0-n” postagens (posts).</li>
+        <li>Uma postagem pode conter uma estrutura dinâmica, contendo minimamente o título da postagem, o conteúdo, e a
+            data
+            e hora de publicação.</li>
+        <li>O conteúdo de uma postagem pode opcionalmente ser fracionado um “seções”, devendo estas estar ordenadas, e
+            conter um “subtítulo” e seu conteúdo.</li>
+        <li>O conteúdo de uma seção, também pode conter outras “subseções”.</li>
+        <li>O sistema deve suportar que um usuário anônimo crie uma nova conta.</li>
+        <li>O sistema deve suportar que o usuário anônimo, com conta criada, se autentique (login e senha).</li>
+        <li>A criação de blogs só será possível por usuários autenticados.</li>
+        <li>Todos os blogs serão públicos (acessíveis a partir da tela inicial do sistema mesmo por usuários não
+            autenticados).</li>
+        <li>A tela inicial do sistema deve apresentar todos os Blogs existentes, em ordem descendente pela data do
+            último
+            post.</li>
+        <li>Ao acessar um Blog deve ser relacionado todos os posts em ordem decrescente da data de publicação.</li>
+        <li>O sistema deve apresentar todos os dados de um post, destacando, se houver, o título de cada seção ou
+            subseção.
+        </li>
+    </ol>
+</div>
+{% endblock %}

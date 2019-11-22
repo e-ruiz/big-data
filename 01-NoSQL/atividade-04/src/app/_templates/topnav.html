@@ -1,0 +1,92 @@
+<nav class="purecss-menu">
+  <ul>
+    <li>
+      <a href="{{ url_for('blog.get_blogs') }}" class="w3-large"><span class="w3-xlarge fa fa-home"></span> Mongo
+        Blogs</a>
+    </li>
+
+    {% if current_user.is_authenticated %}
+    <li>
+      <a href="#" class="w3-large"><span class="w3-xlarge fa fa-envelope"></span> Meu Blog [{{ current_user.nome }}]</a>
+      <ul>
+        <li><a href="{{ url_for('blog.get_novo') }}">Novo Blog</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="{{ url_for('usuario.logout') }}" class="w3-large"> Logout</a>
+    </li>
+    <!-- <li><a href="#">Links</a></li> -->
+    {% else %}
+    <li>
+      <a href="{{ url_for('usuario.get_cadastro') }}" class="w3-large"> Cadastro</a>
+    </li>
+    <li>
+      <a href="{{ url_for('usuario.get_login') }}" class="w3-large"> Login</a>
+    </li>
+    {% endif %}
+    <li>
+      <a href="{{ url_for('sobre.get_sobre') }}" class="w3-large"> Sobre</a>
+    </li>
+    {#  
+  </li>
+    <li><a href="#">Consultas</a>
+      <!-- First Tier Drop Down -->
+      <ul>
+        <li><a href="#">Resources</a></li>
+        <li><a href="#">Links</a></li>
+        <li><a href="#">Tutorials</a>
+          <!-- Second Tier Drop Down -->
+          <ul>
+            <li><a href="#">HTML/CSS</a></li>
+            <li><a href="#">jQuery</a></li>
+            <li><a href="#">Other</a>
+              <!-- Third Tier Drop Down -->
+              <ul>
+                <li><a href="#">Stuff</a></li>
+                <li><a href="#">Things</a></li>
+                <li><a href="#">Other Stuff</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#">Relatórios</a></li>
+    <li><a href="#">Favoritos</a></li>
+    <li><a href="#">Ajuda</a></li>
+  </ul>
+#}
+</nav>
+</div>
+{#
+<div class="w3-col s2">
+  <nav class="purecss-menu w3-right">
+    <ul>
+      {% if current_user.is_authenticated %}
+      <li>
+        <a href="{{ url_for('usuario.logout') }}" class="w3-large" title="Sair">
+          <!-- <span class="w3-tag w3-small w3-right" style="background:#344e5a; padding:2px 5px; border-radius:10px; line-height:20px; min-width:30px; margin-top:20px;">18</span> -->
+          {{ current_user.nome}}
+          <span class="w3-xlarge fa fa-power-off" style="padding:0 15px;"></span>
+
+        </a>
+        <!-- <ul style="left:-151px; z-index:9999;">
+          <li><a href="#"><span class="fa fa-user"></span> {{ current_user.nome}}</a></li>
+          <li><a href="#"><span class="fa fa-envelope"></span> Meus Posts</a>
+          </li>
+          <li><a href="#"><span class="fa fa-user"></span> Perfil</a></li>
+          <li style="border-top:1px dashed #eee;"><a href="{{ url_for('usuario.logout') }}"><span
+                class="fa fa-power-off"></span> Sair</a></li>
+        </ul> -->
+      </li>
+      {% else %}
+      <li>
+        <a href="{{ url_for('usuario.get_login') }}">Login</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+#}

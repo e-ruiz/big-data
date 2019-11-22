@@ -1,0 +1,25 @@
+{% extends 'blog.html' %}
+
+{% block header %}
+  <h1>{% block title %}Mongo Blogs{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="w3-container">
+    <h1>{{blog.titulo}}</h1>
+
+    <div class="w3-container">
+      <a href="{{ url_for('post.get_novo', blog_id=blog._id) }}" class="w3-button w3-blue w3-hover-indigo">Novo post</a>
+    </div>
+    <p>{{blog}}</p>
+    <p>Nome: {{blog.titulo}}</p>
+    <p>Descricao: {{blog.descricao}}</p>
+    
+    <ul>
+      <li>IF posts is None: "nenhum post escrito ainda"</li>
+      <li>Post 1</li>
+      <li>Post 2</li>
+      <li>Post 3</li>
+    </ul>
+  </div>
+{% endblock %}

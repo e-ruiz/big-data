@@ -1,0 +1,12 @@
+{% extends 'blog.html' %}
+
+{% block content %}
+
+<h1>Mongo Blogs | Usuários</h1>
+
+<ul>
+    {% for usuario in usuarios %}
+    <li><a href="{{ url_for('usuario.get_usuarios')  }}{{ usuario._id }}">{{usuario.nome}}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

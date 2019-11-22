@@ -1,0 +1,37 @@
+[
+/* usuario/autor */
+    {
+        "nome": "",
+        "login": "",
+        "senha": ""
+    },
+
+// blog
+    {
+        "descricao": "",
+        "autor": {
+            "_id_usuario": "1",
+            "nome": "",
+            "email": ""
+        },
+        "posts": [
+            {
+                "titulo": "",
+                "data_hora": "2019-01-01 12:00:00",
+                "secoes": [
+                    {
+                        "titulo": "",
+                        "ordenacao": 1,
+                        "subsecoes": [
+                            {
+                                "titulo": "",
+                                "ordenacao": 1,
+                                "conteudo": ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

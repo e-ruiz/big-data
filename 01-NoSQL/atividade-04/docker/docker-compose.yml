@@ -1,0 +1,12 @@
+version: '3'
+services:
+    alpine-python:
+        build: .
+        container_name: alpine-py-flask
+        command: python manage.py runserver
+        ports:
+            - 8088:5000
+        #  volumes:
+        #    - .src:/app
+        environment:
+            FLASK_DEBUG: development

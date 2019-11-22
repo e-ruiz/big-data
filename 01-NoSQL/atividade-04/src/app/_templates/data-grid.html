@@ -1,0 +1,43 @@
+<br><br>
+<div id="grid-001" class="w3-container">
+  {#
+    <button type="button" class="print">Imprimir/PDF</button>
+    <button type="button" class="print">CSV/Excel</button>
+
+    id: ''
+    title: ''
+    class: ''
+    items: [{},{}]
+    columns: {}
+  #}
+
+  {% if grid.title %}
+  <h3>{{ grid.title }}</h3>
+  {% endif %}
+  <table {% if grid.id %}id="{{ grid.id }}" {% endif %}
+      {% if grid.class %} class="{{ grid.class }}" {% endif %}>
+    <thead>
+      <tr>
+        {% for column, title in grid['columns'].items() %}
+        <th>{{ title }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in grid['items'] %}
+      <tr>
+        {% for field, value in item.items() %}
+        {% if field in grid['columns'] %}
+        <td>{{ value }}</td>
+        {% endif %}
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td class="w3-grey" colspan="{{ grid['columns']|length }}">{{ grid['items']|length }}</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
