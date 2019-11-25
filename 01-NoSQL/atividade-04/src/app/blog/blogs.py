@@ -3,13 +3,19 @@
 Flask Skeleton
 """
 
-from flask import Blueprint, request, redirect, url_for, render_template, flash
+from flask import Blueprint, request, redirect, url_for, render_template, flash, session
 from pymongo import errors as mongo_errors
 from bson.objectid import ObjectId
-from flask_login import login_required
+from flask_login import login_required, current_user
 import datetime
 
-from app import mongo
+from app import mongo, login_manager
+from app.usuario.model import Usuario
+
+
+@login_manager.user_loader
+def load_user(usuario_id):
+    return Usuario.get_by_id(usuario_id)
 
 
 blog = Blueprint('blog', __name__)
@@ -20,7 +26,11 @@ def get_blogs():
     """Lista os blogs
     """
     try:
-        blogs = mongo.db.blog.find()
+        # item 12
+        blogs = mongo.db.blog.find().sort(
+            [('posts.data_cadastro', -1
+        )])
+
     except mongo_errors.OperationFailure as e:
         return render_template('db_error.html', error=e)
 
@@ -52,8 +62,7 @@ def get_novo():
     """Apresenta o form de cadastro de blogs
     @todo: inserir o usuario/autor
     """
-    date_time = datetime.datetime.today().isoformat()
-    return render_template('blog/form-blog.html', date_time=date_time)
+    return render_template('blog/form-blog.html')
 
 
 @blog.route('/blogs/novo', methods=['POST'])
@@ -63,18 +72,20 @@ def post_novo():
     @todo: inserir o usuario/autor
     """
     blog = {
+        "author_id": ObjectId(session['usr_id']),
         "titulo": request.form['titulo'],
         "descricao": request.form['descricao'],
-        "data_cadastro": request.form['data_cadastro']
+        "data_cadastro": datetime.datetime.utcnow(),
+        "posts": []
     }
 
     try:
-        blog_id = mongo.db.blog.insert_one(blog)
+        novo_blog = mongo.db.blog.insert_one(blog)
     except mongo_errors.OperationFailure as e:
         return render_template('db_error.html', error=e)
 
     flash('Blog criado com sucesso!')
-    return redirect(url_for('blog.get_blog', blog_id=blog_id.inserted_id))
+    return redirect(url_for('blog.get_blog', blog_id=novo_blog.inserted_id))
 
 
 

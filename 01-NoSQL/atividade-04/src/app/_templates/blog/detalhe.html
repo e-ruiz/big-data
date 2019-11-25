@@ -8,18 +8,21 @@
   <div class="w3-container">
     <h1>{{blog.titulo}}</h1>
 
+    {% if current_user.is_authenticated %}
     <div class="w3-container">
       <a href="{{ url_for('post.get_novo', blog_id=blog._id) }}" class="w3-button w3-blue w3-hover-indigo">Novo post</a>
     </div>
-    <p>{{blog}}</p>
-    <p>Nome: {{blog.titulo}}</p>
-    <p>Descricao: {{blog.descricao}}</p>
+    {% endif %}
+    <p>Descrição do Blog: {{blog.descricao}}</p>
     
     <ul>
-      <li>IF posts is None: "nenhum post escrito ainda"</li>
-      <li>Post 1</li>
-      <li>Post 2</li>
-      <li>Post 3</li>
+      {% for post in blog.posts %}
+      <li>
+        <a href="{{ url_for('post.get_post', blog_id=blog._id, post_id=post._id) }}">{{ post.titulo }} ({{ post.data_cadastro }})</a>
+      </li>
+      {% else %}
+      <li>Nenhum post cadastrado ainda.</li>
+      {% endfor %}
     </ul>
   </div>
 {% endblock %}

@@ -5,15 +5,15 @@
   <br>
   <form method="post" action="{{ url_for('post.post_novo', blog_id=blog_id) }}">
     <h2>{{blog_id}}</h2>
-    <input name="data_hora" id="data_hora" type="text" value="{{data_hora}}" required>
+    <input name="data_cadastro" id="data_cadastro" type="hidden" value="{{data_cadastro}}" required>
     <br>
     <label for="titulo">Título do post</label>
     <br>
     <input name="titulo" id="titulo" required>
     <br>
-    <label for="descricao">Descrição</label>
+    <label for="conteudo">Conteúdo</label>
     <br>
-    <textarea id="descricao" name="descricao" rows="6"></textarea>
+    <textarea id="conteudo" name="conteudo" rows="6"></textarea>
     <br>
     <input type="submit" value="Enviar">
   </form>

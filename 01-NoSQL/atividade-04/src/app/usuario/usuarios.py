@@ -2,26 +2,21 @@
 """
 Flask Skeleton
 """
+import json
 
-from flask import Blueprint, request, redirect, url_for, render_template, flash
+from flask import Blueprint, request, redirect, url_for, render_template, flash, session
 from pymongo import errors as mongo_errors
 from bson.objectid import ObjectId
-from flask_login import login_required, login_user, logout_user
+from flask_login import login_required, login_user, logout_user, current_user
 
 from app import mongo, login_manager
-
 from .model import Usuario
-
-
-@login_manager.user_loader
-def load_user(usuario_id):
-    return Usuario.get_by_id(usuario_id)
 
 
 usuario = Blueprint('usuario', __name__)
 
 
-@usuario.route('/', methods=['GET'])
+@usuario.route('/usuarios/', methods=['GET'])
 def get_usuarios():
     """Lista os usuários cadastrados
     """
@@ -34,7 +29,7 @@ def get_usuarios():
     return render_template('usuario/lista.html', usuarios=usuarios)
 
 
-@usuario.route('/<usuario_id>', methods=['GET'])
+@usuario.route('/usuarios/<usuario_id>', methods=['GET'])
 def get_usuario(usuario_id):
     """Lista os usuários cadastrados
     """
@@ -48,7 +43,7 @@ def get_usuario(usuario_id):
     return render_template('usuario/detalhe.html', usuario=usuario)
 
 
-@usuario.route('/novo', methods=['GET'])
+@usuario.route('/usuarios/novo', methods=['GET'])
 def get_cadastro():
     """Form de cadastro do usuário/autor do blog
     """
@@ -57,7 +52,7 @@ def get_cadastro():
     return render_template('usuario/form-cadastro.html', user={})
 
 
-@usuario.route('/novo', methods=['POST'])
+@usuario.route('/usuarios/novo', methods=['POST'])
 def post_cadastro():
     """Cadastro do usuário/autor
     """
@@ -76,7 +71,7 @@ def post_cadastro():
     return redirect(url_for('usuario.get_cadastro_usuario', user_id=user_id))
 
 
-@usuario.route('/<user_id>', methods=['GET'])
+@usuario.route('/usuarios/<user_id>', methods=['GET'])
 def get_cadastro_usuario(user_id):
     """Apresenta os dados de cadastro de um usuário específico
     """
@@ -92,28 +87,25 @@ def get_cadastro_usuario(user_id):
 
     return render_template('usuario/perfil.html', perfil=usuario)
 
-@usuario.route('/login', methods=['GET'])
+
+@usuario.route('/usuarios/login', methods=['GET'])
 def get_login():
     """Login do usuário
     """
     return render_template('usuario/login.html')
 
 
-@usuario.route('/login', methods=['POST'])
+@usuario.route('/usuarios/login', methods=['POST'])
 def post_login():
-    # try:
-    #     login = mongo.db.usuario.find_one({
-    #         "login": request.form['login'],
-    #         "senha": request.form['senha'],
-    #         })
-    # except mongo_errors.OperationFailure as e:
-    #     return render_template('db_error.html', error=e)
-    
     usuario = Usuario(request.form['login'], request.form['senha'])
 
     if usuario.login():
         login_user(usuario)
-
+        
+        session['usr_id'] = current_user.get_id().decode()
+        session['usr_name'] = current_user.nome
+        session['usr_login'] = current_user.nome_de_usuario
+                
         flash('Login efetuado com sucesso! Olá {}'.format(usuario.nome))
         return redirect(url_for('blog.get_blogs'))
 
@@ -121,7 +113,7 @@ def post_login():
     return redirect(url_for('usuario.get_login'))
 
 
-@usuario.route("/logout")
+@usuario.route('/usuarios/logout')
 @login_required
 def logout():
     logout_user()

@@ -7,7 +7,7 @@ from flask_login import login_required
 sobre = Blueprint('sobre', __name__)
 
 
-@sobre.route('', methods=['GET'])
+@sobre.route('/sobre', methods=['GET'])
 def get_sobre():
     """Descrição do trabalho
     """

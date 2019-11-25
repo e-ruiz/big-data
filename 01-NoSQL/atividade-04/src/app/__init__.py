@@ -16,7 +16,6 @@ from flask_login import LoginManager, login_manager
 # Import debug toolbar
 from flask_debugtoolbar import DebugToolbarExtension
 
-
 # Define the WSGI application object
 app = Flask(__name__,
             # instance_relative_config=True,
@@ -33,6 +32,7 @@ TOOLBAR = DebugToolbarExtension(app)
 # define login manager to the app
 login_manager = LoginManager()
 login_manager.init_app(app)
+
 
 # define mongo connection manager to rhe app
 mongo = PyMongo(app)
@@ -54,11 +54,13 @@ from app.sobre.sobre import sobre
 
 # implementa array com as rotas e os blueprints, #lazyDev
 ROUTES = [
-    {'url': '/<blog_id>/posts', 'blueprint': post},
-    {'url': '/', 'blueprint': blog},
-    {'url': '/usuarios', 'blueprint': usuario},
-    {'url': '/sobre', 'blueprint': sobre},
+    {'url_prefix': '/blogs',                 'blueprint': blog},
+    {'url_prefix': '/blogs/<blog_id>/posts', 'blueprint': post},
+    {'url_prefix': '/usuarios',              'blueprint': usuario},
+    {'url_prefix': '/sobre',                 'blueprint': sobre},
 ]
 # Register blueprint(s)
 for route in ROUTES:
-    app.register_blueprint(route['blueprint'], url_prefix=route['url'])
+    # omitindo url_prefix
+    # app.register_blueprint(route['blueprint'], url_prefix=route['url_prefx'])
+    app.register_blueprint(route['blueprint'])

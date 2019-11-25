@@ -1,25 +1,28 @@
 {% extends 'blog.html' %}
 
 {% block header %}
-  <h1>{% block title %}Mongo Blogs{% endblock %}</h1>
+<h1>{% block title %}Mongo Blogs{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
-  <div class="w3-container">
-    <h1>{{posts.titulo}}</h1>
+<div class="w3-container">
+  <h1>{{ blog.titulo }}</h1>
 
-    <div class="w3-container">
-      <a href="{{ url_for('post.get_novo', blog_id=blog_id) }}" class="w3-button w3-blue w3-hover-indigo">Novo post</a>
-    </div>
-    <p>{{posts}}</p>
-    <p>Nome: {{posts.titulo}}</p>
-    <p>Descricao: {{posts.descricao}}</p>
-    
-    <ul>
-      <li>IF posts is None: "nenhum post escrito ainda"</li>
-      <li>Post 1</li>
-      <li>Post 2</li>
-      <li>Post 3</li>
-    </ul>
+  <div class="w3-container">
+    <a href="{{ url_for('post.get_novo', blog_id=blog_id) }}" class="w3-button w3-blue w3-hover-indigo">Novo post</a>
   </div>
+  <p>{{ blog['posts'][0] }}</p>
+  <p>Nome: {{ blog['posts'][0]['titulo'] }}</p>
+  <p>Data de cadastro: {{ blog['posts'][0]['data_cadastro'] }}</p>
+
+  <h2>Seções:</h2>
+  <ul>
+    {% for secao in blog['posts'][0]['conteudo'] %}
+    <li>{{ secao.titulo }} ({{ secao.data_cadastro }})</li>
+    <li>{{ secao.conteudo }}</li>
+    {% else %}
+    <li>Nenhum post cadastrado ainda.</li>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock %}

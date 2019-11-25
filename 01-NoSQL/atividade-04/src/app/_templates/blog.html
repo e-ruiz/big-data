@@ -4,13 +4,12 @@
 
 <body>
   {% if False or config['ENV'] == 'development' %}
-  <div id="develop-warning" class="w3-bar w3-padding w3-red w3-fixed">
-    <p class="w3-large">Cuidado, a aplicação está rodando em modo desenvolvimento!</p>
+  <div id="develop-warning" class="w3-bar w3-container w3-red w3-fixed">
+    <p class="w3-large">Cuidado, a aplicação está rodando em modo desenvolvimento! FLASK_ENV=development</p>
   </div>
   {% endif %}
 
-
-  <div id="main" style="background:#eee;">
+  <div id="main">
     <!--
     <span class="w3-opennav w3-xlarge" onclick="toggleSidenav()" style="display:none">☰</span>
     -->

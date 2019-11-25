@@ -4,9 +4,17 @@
 
 <h1>Mongo Blogs</h1>
 
-<ul>
-  {% for blog in blogs %}
-  <li><a href="{{ url_for('blog.get_blogs')  }}/{{ blog._id   }}">{{blog.titulo}}</a></li>
-  {% endfor %}
-</ul>
+{% for blog in blogs %}
+<div class="w3-half w3-container w3-margin-bottom ">
+  <div class="w3-container w3-white">
+    <h2><a href="{{ url_for('blog.get_blog', blog_id=blog._id) }}">{{ blog.titulo }}</a></h2>
+    <p>Cadastro: {{ blog.data_cadastro.strftime('%d/%m/%Y %H:%M:%S') }}</p>
+    <p>{{ blog.descricao }}</p>
+    <p>Atualização: {{ blog.posts[0].data_cadastro.strftime('%d/%m/%Y %H:%M:%S') }}</p>
+    
+  </div>
+</div>
+
+{% endfor %}
+
 {% endblock %}
