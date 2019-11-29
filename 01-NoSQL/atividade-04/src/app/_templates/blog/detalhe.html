@@ -1,28 +1,34 @@
 {% extends 'blog.html' %}
 
 {% block header %}
-  <h1>{% block title %}Mongo Blogs{% endblock %}</h1>
+<!-- <h1>{% block title %}Mongo Blogs{% endblock %}</h1> -->
 {% endblock %}
 
 {% block content %}
+<div class="w3-container">
+  {% if current_user.is_authenticated %}
   <div class="w3-container">
-    <h1>{{blog.titulo}}</h1>
-
-    {% if current_user.is_authenticated %}
-    <div class="w3-container">
-      <a href="{{ url_for('post.get_novo', blog_id=blog._id) }}" class="w3-button w3-blue w3-hover-indigo">Novo post</a>
-    </div>
-    {% endif %}
-    <p>Descrição do Blog: {{blog.descricao}}</p>
-    
-    <ul>
-      {% for post in blog.posts %}
-      <li>
-        <a href="{{ url_for('post.get_post', blog_id=blog._id, post_id=post._id) }}">{{ post.titulo }} ({{ post.data_cadastro }})</a>
-      </li>
-      {% else %}
-      <li>Nenhum post cadastrado ainda.</li>
-      {% endfor %}
-    </ul>
+    <a href="{{ url_for('post.get_novo', blog_id=blog._id) }}" class="w3-button w3-blue w3-hover-indigo">Novo post</a>
   </div>
+  {% endif %}
+
+  <h1>{{blog.titulo}}</h1>
+  <p>{{blog.descricao}}</p>
+
+  <div class="w3-row-padding">
+    {% for post in blog.posts %}
+    <div class="w3-half w3-container w3-margin-bottom">
+      <div class="w3-container w3-white">
+        <p><b><a href="{{ url_for('post.get_post', blog_id=blog._id, post_id=post._id) }}">
+          {{ post.titulo }} <span class="fa fa-arrow-right"></span>
+        </a></b></p>
+        <p>{{ post.data_cadastro.strftime('%d/%m/%Y %H:%M:%S') }}</p>
+        <p>{{ post.secoes[0].conteudo }}</p>
+      </div>
+    </div>
+    {% else %}
+    <p>Nenhum post cadastrado ainda.</p>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}

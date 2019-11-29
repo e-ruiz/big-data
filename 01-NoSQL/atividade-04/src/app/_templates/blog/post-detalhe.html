@@ -1,28 +1,55 @@
 {% extends 'blog.html' %}
 
 {% block header %}
-<h1>{% block title %}Mongo Blogs{% endblock %}</h1>
+<!-- <h1>{% block title %}Mongo Blogs{% endblock %}</h1> -->
 {% endblock %}
 
 {% block content %}
 <div class="w3-container">
-  <h1>{{ blog.titulo }}</h1>
 
-  <div class="w3-container">
-    <a href="{{ url_for('post.get_novo', blog_id=blog_id) }}" class="w3-button w3-blue w3-hover-indigo">Novo post</a>
-  </div>
-  <p>{{ blog['posts'][0] }}</p>
-  <p>Nome: {{ blog['posts'][0]['titulo'] }}</p>
-  <p>Data de cadastro: {{ blog['posts'][0]['data_cadastro'] }}</p>
 
-  <h2>Seções:</h2>
-  <ul>
-    {% for secao in blog['posts'][0]['conteudo'] %}
-    <li>{{ secao.titulo }} ({{ secao.data_cadastro }})</li>
-    <li>{{ secao.conteudo }}</li>
-    {% else %}
-    <li>Nenhum post cadastrado ainda.</li>
+  <p style="width: 600px">
+    {{ blog }}
+  </p>
+
+  <h1>Blog: {{ blog.titulo }}</h1>
+  <h2>Post: {{ blog.posts[0].titulo }}</h2>
+  <p>{{ blog.posts[0].data_cadastro.strftime('%d/%m/%Y %H:%M:%S') }}</p>
+
+  <hr>
+
+  {% for secao in blog.posts[0].secoes %}
+    <!-- {# index == 1 significa que é a primeira secao, que é na verdade o conteúdo do post #} -->
+    <h3>{{ secao.titulo }}</h3>
+    <p>{{ secao.data_cadastro }}</p>
+    <p>{{ secao.conteudo }}</p>
+
+    {% for subsecao1 in secao.secoes %}
+      <h4>{{ subsecao1.titulo }}</h4>
+      <p>{{ subsecao1.data_cadastro }}</p>
+      <p>{{ subsecao1.conteudo }}</p>
+
+      {% for subsecao2 in subsecao1.secoes %}
+        <h5>{{ subsecao2.titulo }}</h5>
+        <p>{{ subsecao2.data_cadastro }}</p>
+        <p>{{ subsecao2.conteudo }}</p>
+
+        {% for subsecao3 in subsecao2.secoes %}
+          <h6>{{ subsecao3.titulo }}</h6>
+          <p>{{ subsecao3.data_cadastro }}</p>
+          <p>{{ subsecao3.conteudo }}</p>
+          
+        {% endfor %}
+      {% endfor %}
     {% endfor %}
-  </ul>
+  {% endfor %}
+ 
+  {% if current_user.is_authenticated %}
+  <div class="w3-container">
+    <a href="{{ url_for('secao.get_secoes_novo', blog_id=blog._id, post_id=blog.posts[0]._id) }}"
+       title="{{ url_for('secao.get_secoes_novo', blog_id=blog._id, post_id=blog.posts[0]._id) }}" 
+       class="w3-button w3-blue w3-hover-indigo">Nova seção</a>
+  </div>
+  {% endif %}
 </div>
 {% endblock %}

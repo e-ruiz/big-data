@@ -3,7 +3,7 @@
 Flask Skeleton
 """
 
-from flask import Blueprint, request, redirect, url_for, render_template, flash, session
+from flask import Blueprint, request, redirect, url_for, render_template, abort, flash, session
 from pymongo import errors as mongo_errors
 from bson.objectid import ObjectId
 from flask_login import login_required, current_user
@@ -42,18 +42,23 @@ def get_blog(blog_id):
     """Lista um blog específico
     """
     try:
-        b = mongo.db.blog.find_one_or_404({"_id": ObjectId(blog_id)})
+        blog = mongo.db.blog.find({
+                '_id': ObjectId(blog_id)
+            }).sort([('posts.data_cadastro', -1)])
+        if blog.count() <= 0:
+            return abort(404)
+        blog = blog[0]
     except mongo_errors.OperationFailure as e:
         return render_template('db_error.html', error=e)
 
-    blog = {
-        "titulo": b['titulo'],
-        "descricao": b['descricao'],
-        "data_cadastro": b['data_cadastro'],
-        "posts": []
-    }
+    # blog = {
+    #     'titulo': b[0]['titulo'],
+    #     'descricao': b[0]['descricao'],
+    #     'data_cadastro': b[0]['data_cadastro'],
+    #     'posts': []
+    # }
 
-    return render_template('blog/detalhe.html', blog=b)
+    return render_template('blog/detalhe.html', blog=blog)
 
 
 @blog.route('/blogs/novo', methods=['GET'])
@@ -87,32 +92,4 @@ def post_novo():
     flash('Blog criado com sucesso!')
     return redirect(url_for('blog.get_blog', blog_id=novo_blog.inserted_id))
 
-
-
-# @blog.route('/', methods=['GET'])
-# def get_one_post(post_id)
-
-# @blog.route('/post/novo', methods=['GET'])
-# def get_form_post():
-#     """form post/blog
-#     """
-#     return render_template('blog/form-blog.html')
-
-
-# @blog.route('/post/novo', methods=['POST'])
-# def post_form_post():
-#     """Insere um novo post/blog
-#     """
-#     post = {
-#         "titulo": request.form['titulo'],
-#         "post": request.form['post']
-#     }
-
-#     try:
-#         post_id = mongo.db.post.insert_one(post)
-#     except mongo_errors.OperationFailure as e:
-#         return render_template('db_error.html', error=e)
-    
-#     flash('Post criado com sucesso!')
-#     return redirect(url_for('blog.get_post', post_id=post_id))
 

@@ -64,13 +64,13 @@ def get_post(blog_id, post_id):
     try:
         blog = mongo.db.blog.find_one(
             {
-            "_id": ObjectId(blog_id), 
+            '_id': ObjectId(blog_id), 
             'posts': {'$elemMatch': {'_id': ObjectId(post_id)}}
             }, 
-            {"posts": 1}
+            {'titulo': 1, 'posts.$': 1}
         )
     except mongo_errors.OperationFailure as e:
         return render_template('db_error.html', error=e)
 
-    print(blog)
+    # print(blog)
     return render_template('blog/post-detalhe.html', blog=blog, blog_id=blog_id)

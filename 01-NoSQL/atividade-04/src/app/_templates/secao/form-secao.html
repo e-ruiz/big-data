@@ -1,0 +1,25 @@
+{% extends 'blog.html' %}
+
+{% block content %}
+<div class="w3-container">
+  <br>
+  <form method="post" action="{{ url_for('secao.post_secoes_novo', blog_id=blog_id, post_id=post_id) }}">
+    <h2>{{blog_id}}</h2>
+    <input name="data_cadastro" id="data_cadastro" type="hidden" value="{{data_cadastro}}" required>
+    <br>
+    <label for="titulo">Título da seção</label>
+    <br>
+    <input name="titulo" id="titulo" required>
+    <br>
+    <label for="conteudo">Conteúdo</label>
+    <br>
+    <textarea id="conteudo" name="conteudo" rows="6"></textarea>
+    <br>
+    <input type="submit" value="Enviar">
+  </form>
+
+  <hr>
+
+  {{  blog.__dict__  }}
+</div>
+{% endblock %}

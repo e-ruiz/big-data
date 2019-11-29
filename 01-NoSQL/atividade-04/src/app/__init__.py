@@ -49,15 +49,17 @@ def not_found(error):
 from app.blog.blogs import blog
 from app.usuario.usuarios import usuario
 from app.blog.posts import post
+from app.secao.secoes import secao
 from app.sobre.sobre import sobre
 # ...
 
 # implementa array com as rotas e os blueprints, #lazyDev
 ROUTES = [
-    {'url_prefix': '/blogs',                 'blueprint': blog},
-    {'url_prefix': '/blogs/<blog_id>/posts', 'blueprint': post},
-    {'url_prefix': '/usuarios',              'blueprint': usuario},
-    {'url_prefix': '/sobre',                 'blueprint': sobre},
+    {'url_prefix': '/blogs',                            'blueprint': blog},
+    {'url_prefix': '/blogs/<blog_id>/posts',            'blueprint': post},
+    {'url_prefix': '/secoes/<blog_id>/posts/<post_id>', 'blueprint': secao},
+    {'url_prefix': '/usuarios',                         'blueprint': usuario},
+    {'url_prefix': '/sobre',                            'blueprint': sobre},
 ]
 # Register blueprint(s)
 for route in ROUTES:
