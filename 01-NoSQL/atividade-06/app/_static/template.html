@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="utf-8"> 
+<title>The Ultranet!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700,900" rel="stylesheet"> 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" 
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" 
+      crossorigin="anonymous">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="../_static/css/w3custom.css">
+<body class="w3-light-grey">
+<!-- topnav -->
+<nav class="w3-bar w3-black w3-fixed">
+  <a href="#" onclick="toggleSidenav()" 
+     class="w3-bar-item w3-button w3-purple w3-hover-deep-purple w3-mobile">The<strong> Ultranet!</strong></a>
+  <a href="#" class="w3-bar-item w3-button w3-red w3-mobile w3-right"><i class="fa fa-hamburger"></i></a>
+  <div class="w3-dropdown-hover w3-mobile w3-right">
+      <button class="w3-button"><i class="fa fa-user"></i></button>
+      <div class="w3-dropdown-content w3-bar-block w3-dark-grey">
+        <a href="#" class="w3-bar-item w3-button w3-mobile">Link 1</a>
+        <a href="#" class="w3-bar-item w3-button w3-mobile">Link 2</a>
+        <a href="#" class="w3-bar-item w3-button w3-mobile">Link 3</a>
+      </div>
+    </div>
+  <a href="#" class="w3-bar-item w3-button w3-hover-none w3-hover-text-blue w3-mobile w3-right">Link 1</a>
+  <a href="#" class="w3-bar-item w3-button w3-hover-none w3-hover-text-green w3-mobile w3-right">Link 2</a>
+  <a href="#" class="w3-bar-item w3-button w3-hover-none w3-hover-text-orange w3-mobile w3-right">Link 4</a>
+  <div class="w3-dropdown-hover w3-hover-purple w3-mobile w3-right">
+    <button class="w3-button">Mais um menu <i class="fa fa-caret-down"></i></button>
+    <div class="w3-dropdown-content w3-bar-block w3-dark-grey">
+      <a href="#" class="w3-bar-item w3-button w3-mobile">Link 1</a>
+      <a href="#" class="w3-bar-item w3-button w3-mobile">Link 2</a>
+      <a href="#" class="w3-bar-item w3-button w3-mobile">Link 3</a>
+    </div>
+  </div>
+  <div class="w3-dropdown-hover w3-mobile w3-right">
+    <button class="w3-button">Dropdown <i class="fa fa-caret-down"></i></button>
+    <div class="w3-dropdown-content w3-bar-block w3-dark-grey">
+      <a href="#" class="w3-bar-item w3-button w3-mobile">Link 1</a>
+      <a href="#" class="w3-bar-item w3-button w3-mobile">Link 2</a>
+      <a href="#" class="w3-bar-item w3-button w3-mobile">Link 3</a>
+    </div>
+  </div>
+</nav>
+
+<!-- sidenav -->
+<nav id="sidenav"
+     class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-top" 
+     style="display:none; width:calc(320px - 48px); top:0; z-index:2; left:0;"
+     aria-hidden="true">
+  <a id="toggle-sidenav" 
+    href="javascript:void(0)" 
+     onclick="toggleSidenav()" 
+     class="w3-large w3-button w3-purple w3-hover-deep-purple fa fa-times">&nbsp;</a>
+  <a href="#" class="w3-bar-item w3-button w3-hover-none w3-hover-text-orange">Link 1</a> 
+  <button class="w3-button w3-block w3-left-align" onclick="myAccFunc()">
+    Accordion <i class="fa fa-caret-down"></i>
+  </button>
+  <div id="demoAcc" class="w3-hide w3-border-bottom">
+      <a href="#" class="w3-bar-item w3-button">Link</a>
+      <a href="#" class="w3-bar-item w3-button">Link</a>
+      <a href="#" class="w3-bar-item w3-button">Link</a>
+      <a href="#" class="w3-bar-item w3-button">Link</a>
+      <a href="#" class="w3-bar-item w3-button">Link</a>
+      <a href="#" class="w3-bar-item w3-button">Link</a>      
+  </div>
+  <a href="#" class="w3-bar-item w3-button">Link 2</a> 
+  <a href="#" class="w3-bar-item w3-button">Link 3</a>
+</nav>
+<div id="sidenav-overlay" class="w3-overlay" style="z-index:1" onclick="toggleSidenav()"></div>
+
+<!-- header -->
+<header class="w3-container w3-center w3-white">
+  <h1 class="w3-jumbo">My first W3.CSS website!</h1>
+  <p class="w3-xxlarge">This site will grow as we add more ...</p>
+</header>
+
+<!-- main content responsive -->
+<div class="w3-row-padding w3-white">
+  <div class="w3-third">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+      incididunt ut labore et dolore magna aliqua.</p>
+  </div>
+  <div class="w3-third">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+      incididunt ut labore et dolore magna aliqua.</p>
+    <div class="w3-container">
+      <p>This is another paragraph.</p>
+      <p>This is a paragraph.</p>
+      <p>This is another paragraph.</p>
+    </div>        
+  </div>
+  <div class="w3-third">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+      incididunt ut labore et dolore magna aliqua.</p>
+  </div>
+</div>
+
+<!-- footer, duh -->
+<footer class="w3-container">
+  <p>This is my footer</p>
+</footer>
+
+<script>
+function toggleSidenav() {
+  let sn = document.querySelector('#sidenav') || null
+  let ov = document.querySelector('#sidenav-overlay') || null
+  let bd = document.body
+
+  if (sn.style.display == "none") {
+    sn.style.display = "block"
+    ov.style.display = "block"
+    bd.classList.add("noscroll")
+  } else {
+    sn.style.display = "none"
+    ov.style.display = "none"
+    bd.classList.remove("noscroll")
+  }
+}
+
+function myAccFunc() {
+  var x = document.getElementById("demoAcc");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-dark-grey";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-dark-grey", "");
+  }
+}
+
+</script>
+
+</body>
+</html>

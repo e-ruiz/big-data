@@ -1,0 +1,57 @@
+{% extends 'principal.html' %}
+
+{% block content %}
+
+<div class="w3-large">
+    <h1>Sobre</h1>
+
+    <h2>ATIVIDADE 6 – Desenvolvimento de Software utilizando o Apache Cassandra</h2>
+    <h3>Pós graduação Latu Sensu em Big Data</h3>
+    <ul>
+        <li><strong>Disciplina:</strong> Bancos de dados Não Relacionais - NoSQL (2019.1)</li>
+        <li><strong>Professor:</strong> Dr. Rafael Queiroz Gonçalves, PMP</li>
+    </ul>
+
+    <h2>Alunos:</h2>
+    <ul>
+        <li>Adriano Nagasava nagasava@gmail.com</li>
+        <li>Eric S. Lucinger Ruiz ruiz.eric@outlook.com</li>
+        <li>Jaceguay Zukoski</li>
+        <li>Luis Fernando Montes</li>
+    </ul>
+    
+    <p>
+        A empresa SegSoft atua como prestadora de serviços de software, sendo uma filial brasileira de uma
+        organização matriz sediada em Berna na Suíça. Os clientes desta empresa estão distribuídos em
+        muitos países distintos, sendo que cada qual está sujeito a diferentes formas de tributação quanto
+        aos serviços prestados.
+        A SegSoft possuí um sistema próprio para gestão dos dados de suas notas fiscais, sendo estes
+        armazenados em uma base de dados estruturada, utilizando a tecnologia MySQL. Entretanto,
+        devido ao grande volume de dados existente nesta plataforma, alinhado a necessidade de constantes
+        consultas, a organização decidiu replicar estes dados em uma base de dados NoSQL a fim de
+        proporcionar maior velocidade de acesso aos dados e robustez quanto a sua disponibilidade.
+        Neste contexto, você, como analista de sistemas que conhece as tecnologias NoSQL, precisa
+        escrever uma rotina computacional para migração dos dados da base relacional (MySQL) para o
+        banco de dados NoSQL (Apache Cassandra).
+        Uma vez realizada esta migração, você ainda precisa desenvolver uma funcionalidade cujo objetivo
+        é imprimir em formato PDF as notas fiscais emitidas. Esta funcionalidade deve receber como
+        parâmetro o número de uma nota fiscal, e então produzir uma versão imprimível que deve ser
+        apresentada em um arquivo PDF. Este documento deve conter:
+    </p>
+    <ul>
+        <li>Nome Cliente</li>
+        <li>Endereço Cliente</li>
+        <li>Itens da nota</li>
+        <ul>
+            <li>Descrição do serviço</li>
+            <li>Quantidade</li>
+            <li>Valor unitário</li>
+            <li>Nome do recurso que prestou o serviço</li>
+            <li>Função do recurso que prestou o serviço</li>
+            <li>Taxa/Impostos</li>
+            <li>Desconto</li>
+        </ul>
+    </ul>
+  
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'principal.html' %}
+
+{% block content %}
+<div class="w3-large">
+    <h1>Notas Cassandra</h1>
+
+    <form action="{{ url_for('post_notas') }}" method="POST">
+        <label for="nr_nota" >Número da nota</label><br>
+        <input type="number" id="nr_nota" name="nr_nota">
+    </form>
+
+</div>
+{% endblock %}

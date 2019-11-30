@@ -1,0 +1,79 @@
+<br><br>
+<div id="grid-001" class="w3-container">
+  {#
+    <button type="button" class="print">Imprimir/PDF</button>
+    <button type="button" class="print">CSV/Excel</button>
+
+    id: ''
+    title: ''
+    class: ''
+    items: [{},{}]
+    columns: {}
+  #}
+
+  {% set total = grid['items'][0].valortotalnota %}
+  {% if grid.title %}
+  <h3>{{ grid.title }}</h3>
+  {% endif %}
+
+
+  <table {% if grid.id %}id="{{ grid.id }}" {% endif %} {% if grid.class %} class="{{ grid.class }}" {% endif %}
+    style="font-size: 11px;"
+  >
+    <thead>
+      <tr>
+        <th colspan="8">Dados do cliente</th>
+      </tr>
+      <tr>
+        <th colspan="2">Cliente</th>
+        <th colspan="4">Endereço</th>
+        <th colspan="2">Valor total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="2">{{ grid['items'][0].clientnome }}</td>
+        <td colspan="4">{{ grid['items'][0].clientendereco }}</td>
+        <td colspan="2">{{ grid['items'][0].valortotalnota }}</td>
+      </tr>
+      <tr style="height:50px">
+        <td colspan="8"></td>
+      </tr>
+    </tbody>
+    <thead>
+      <tr>
+        <th colspan="8">Itens da nota</th>
+      </tr>
+      <tr>
+        <th>Descrição</th>
+        <th>Quantidade</th>
+        <th>Valor unitário</th>
+        <th>Nome recurso</th>
+        <th>Função recurso</th>
+        <th>Taxa/impostos</th>
+        <th>Desconto</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in grid['items'] %}
+      <tr>
+        <td>{{ item.notadescricao }}</td>
+        <td>{{ item.notaquantidade }}</td>
+        <td>{{ item.notavalorunit }}</td>
+        <td>{{ item.notanomerecurso }}</td>
+        <td>{{ item.notafuncaorecurso }}</td>
+        <td>{{ item.notataxaimpostos }}</td>
+        <td>{{ item.notadesconto }}</td>
+        <td>{{ item.notasubtotal }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="7">Total:</td>
+        <td>{{ total }}</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

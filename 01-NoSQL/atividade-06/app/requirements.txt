@@ -1,0 +1,12 @@
+blinker==1.4
+cassandra-driver==3.20.2
+Click==7.0
+dse-driver==2.11.0
+Flask==1.1.1
+Flask-DebugToolbar==0.10.1
+geomet==0.1.2
+itsdangerous==1.1.0
+Jinja2==2.10.3
+MarkupSafe==1.1.1
+six==1.13.0
+Werkzeug==0.16.0

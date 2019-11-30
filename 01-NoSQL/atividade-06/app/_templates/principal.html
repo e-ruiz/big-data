@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% include 'header.html' %}
+<body>
+  <div id="main" style="background:#eee;">
+    <!--
+    <span class="w3-opennav w3-xlarge" onclick="toggleSidenav()" style="display:none">☰</span>
+    -->
+    <header class="w3-blue-grey">
+      <div class="w3-row w3-blue-grey">
+        <div class="w3-col s10">
+          {% include 'topnav.html' %}
+        </div>
+      </div>
+    </header>
+    <div class="w3-row">
+      <div class="w3-col w3-container" style="padding:0;width:200px;">
+        {# include 'sidenav.html' #}
+      </div>
+      <div id="content" class="w3-rest w3-container w3-white">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+    <div class="w3-row">
+      <div class="w3-col s12 w3-container w3-white" style="border-top:1px solid #ccc;">
+        {% include 'footer.html' %}
+      </div>
+  </div>
+</body>
+</html>
