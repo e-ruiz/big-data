@@ -1,4 +1,6 @@
 
+# -*- coding: utf-8 -*-
+
 from flask import Flask,render_template, request, abort
 from flask_debugtoolbar import DebugToolbarExtension
 from model  import Notas
@@ -20,22 +22,25 @@ TOOLBAR = DebugToolbarExtension(app)
 def post_notas():
     """Lista as notas
     """
-    nota_id = request.form['nr_nota']
-    
-    n = Notas()
-    notas = n.get_itens_da_nota(nota_id)
+    try:
+       nota_id = int(request.form['nr_nota'])      
+    except ValueError:
+       return abort(400)
+    else:        
+        n = Notas()
+        notas = n.get_itens_da_nota(nota_id)
 
-    if not notas:
-        return render_template('404.html')
-    grid = {
-        'id': 'grid-notas',
-        'title': 'Notas',
-        'class': 'grid  printable',
-        'columns': {'nr': 'Número NF-e', 'cliente': 'Nome do Cliente'},
-        'items': notas
-    }
+        if not notas:
+            return render_template('404.html')
+        grid = {
+            'id': 'grid-notas',
+            'title': 'Notas',
+            'class': 'grid  printable',
+            'columns': {'nr': 'Número NF-e', 'cliente': 'Nome do Cliente'},
+            'items': notas
+        }
 
-    return render_template('notas/lista.html', grid=grid)
+        return render_template('notas/lista.html', grid=grid)
 
 
 @app.route('/notas', methods=['GET'])
