@@ -14,10 +14,10 @@ DEBUG_TB_INTERCEPT_REDIRECTS = False
 BASE_DIR = os.path.abspath(os.path.dirname(__file__) + os.path.join('/../'))
 
 # Exemplo Cassandra DB
-CASSANDRA_HOST = os.environ.get('FLASK_CASS_HOST')
-CASSANDRA_PORT = os.environ.get('FLASK_CASS_PORT')
-CASSANDRA_USER = os.environ.get('FLASK_CASS_USER')
-CASSANDRA_PASS = os.environ.get('FLASK_CASS_PASS')
+CASSANDRA_HOST = os.environ.get('FLASK_CASSANDRA_HOST')
+CASSANDRA_PORT = os.environ.get('FLASK_CASSANDRA_PORT')
+CASSANDRA_USER = os.environ.get('FLASK_CASSANDRA_USER')
+CASSANDRA_PASS = os.environ.get('FLASK_CASSANDRA_PASS')
 
 # Exemplo MongoDB
 # MONGO_USR = os.environ.get('FLASK_MONGO_USR') # eric_O132Dhp1I9m2
