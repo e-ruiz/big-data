@@ -1,11 +1,14 @@
-
+# -*- coding: utf-8 -*-
 
 from cassandra.cluster import Cluster, PlainTextAuthProvider
-from config import BASE_DIR, CASSANDRA_HOST, CASSANDRA_PORT, CASSANDRA_USER, CASSANDRA_PASS
+from config import CASSANDRA_USER, CASSANDRA_PASS
 
 
 class Cassandra:
     def connect(keyspace):
+        """Conexão com o banco 
+        @see https://docs.datastax.com/en/developer/python-driver/3.20/getting_started/
+        """
         try:
             cluster = Cluster(
                 cloud={
